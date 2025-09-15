@@ -41,3 +41,27 @@ export const filterTokens = (tokens) => {
     }
     return { numbersToken, others };
 }
+
+
+export const interpolateColor = (index, total) => {
+    if (total <= 1) return 'rgb(0, 255, 0)';
+    
+    const middleIndex = Math.floor(total / 2);
+    const ratio = index / (total - 1);
+    
+    // red = красный, green = зеленый, blue = синий (всегда 0)
+    let red = 0, green = 255, blue = 0;
+    
+    if (index <= middleIndex) {
+      // От зеленого к желтому: увеличиваем красный
+      const phaseRatio = index / middleIndex;
+      red = Math.round(255 * phaseRatio);
+    } else {
+      // От желтого к красному: уменьшаем зеленый
+      const phaseRatio = (index - middleIndex) / (total - 1 - middleIndex);
+      red = 255;
+      green = Math.round(255 * (1 - phaseRatio));
+    }
+    
+    return `rgb(${red}, ${green}, ${blue})`;
+  };

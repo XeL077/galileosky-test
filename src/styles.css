@@ -20,6 +20,15 @@ body {
   text-align: left;
 }
 
+.map-legend-list {
+  display: flex;
+}
+
+.map-legend-item {
+  width: 40px;
+  height: 40px;
+}
+
 button {
   padding: 0.6rem 1rem;
   border-radius: 0.5rem;

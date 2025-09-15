@@ -1,14 +1,33 @@
 import React from 'react';
+import { interpolateColor } from '../utils'
 
 /**
- * Преобразование текста в массив
- * @param textAreaValue - string
+ * Компонент легенды карты с цветовой градацией
+ * @param {Array<number>} items - массив чисел для отображения
  */
-export default function MapLegend({items}) {
+export default function MapLegend({ items = [] }) {
+if (!items.length) return;
+
+  // Создаем копию и сортируем, чтобы не мутировать исходный массив
+  const sortedItems = [...items].sort((a, b) => a - b);
+
   return (
     <div className="map-legend">
-      <strong>Легенда</strong>
-      {items.join(' ')}
+      <strong>Легенда:</strong>
+      <div className='map-legend-list'>
+        {sortedItems.map((item, index) => {
+          const color = interpolateColor(index, sortedItems.length);
+          return (
+            <div 
+              key={item} 
+              className='map-legend-item'
+              style={{ backgroundColor: color }}
+            >
+              {item}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
