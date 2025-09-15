@@ -24,33 +24,64 @@ export default function App() {
     }
   };
 
-  let hundredNumbers = new Array(10).fill('').map((item, index) => {
+  let hundredNumbers = new Array(100).fill('').map((item, index) => {
     return index
   }).join(' ');
 
   return (
     <div className="app">
-      <MapLegend items={parsedObject.numbersToken} />
+      <div className="input-section">
+        <h2>Ввод данных</h2>
+        <textarea 
+          ref={textareaRef} 
+          placeholder="Введите числа, разделенные пробелами, запятыми, точками с запятой или переносами строк..." 
+          defaultValue={hundredNumbers} 
+        />
+        <button type="button" onClick={handleClickSubmitBtn}>
+          Обработать данные
+        </button>
+        
+        <div style={{ marginTop: '1rem' }}>
+          <span>
+            Примеры данных:
+          </span>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <button 
+              type="button" 
+              onClick={handleClickSetPreset} 
+              value="3 2, 4, 10 40"
+              style={{ fontSize: '0.75rem', padding: '0.5rem 0.75rem' }}
+            >
+              3 2, 4, 10 40
+            </button>
+            <button 
+              type="button" 
+              onClick={handleClickSetPreset} 
+              value="1, 2 d  40d"
+              style={{ fontSize: '0.75rem', padding: '0.5rem 0.75rem' }}
+            >
+              1, 2 d  40d
+            </button>
+            <button 
+              type="button" 
+              onClick={handleClickSetPreset} 
+              value={hundredNumbers}
+              style={{ fontSize: '0.75rem', padding: '0.5rem 0.75rem' }}
+            >
+              0-99
+            </button>
+          </div>
+        </div>
+      </div>
 
-      <div>
-        <textarea ref={textareaRef} placeholder="Type your message here." defaultValue={hundredNumbers} />
-        <button type="button" onClick={handleClickSubmitBtn}>Показать</button>
+      <div className="results-section">
+        <Statistics 
+          countNumbersToken={parsedObject.numbersToken.length} 
+          filteredCount={parsedObject.others.length} 
+        />
+        
+        <MapLegend items={parsedObject.numbersToken} />
       </div>
-      <div>
-        <p>
-          Значения по-умолчанию
-        </p>
-        <input type='button' onClick={handleClickSetPreset} value='3 2, 4, 10 40' />
-        <input type='button' onClick={handleClickSetPreset} value='1, 2 d\  40d' />
-        <input type='button' onClick={handleClickSetPreset} value={hundredNumbers} />
-      </div>
-      <Statistics 
-        countNumbersToken={parsedObject.numbersToken.length} 
-        filteredCount={parsedObject.others.length} 
-      />
-      
     </div>
   )
 }
-
-
