@@ -30,31 +30,10 @@ src/
   App.jsx                # корневой компонент
   main.jsx               # вход приложения
   styles.css             # стили
-  utils.js               # утилиты парсинга
+  utils.js               # утилиты парсинга интерполяции
 index.html               # точка входа Vite
 vite.config.js           # конфиг Vite
 ```
 
-## Разделители
-Список хранится в `splitterList` (`src/utils.js`): пробел, табуляция, запятая, точка с запятой, перенос строки.
-
-## Утилиты (`src/utils.js`)
-- `toSplitAreaValue(textAreaValue: string): string[]` — заменяет все разделители на пробел и делит по пробелам; пустые элементы отфильтрованы.
-- `filterTokens(tokens: (string|number)[]) => { numbersToken: number[]; others: (string|number)[] }` — делит токены на числа и прочие; числа валидируются через `Number(...)`, `isNaN` и `isFinite`.
-
-Пример:
-```js
-import { toSplitAreaValue, filterTokens } from './src/utils';
-
-const tokens = toSplitAreaValue('1 2, 3;abc\n4');
-const { numbersToken, others } = filterTokens(tokens);
-// numbersToken -> [1,2,3,4]
-// others -> ['abc']
-```
-
-## Компоненты
-- `Statistics` — принимает `countNumbersToken`, `filteredCount`; отображает числа, отсечённые значения и общий итог.
-- `MapLegend` — компонент легенды (можно доработать под ваши данные).
-
 ## Требования
-Node.js 18+
+Node.js 18.0.0+

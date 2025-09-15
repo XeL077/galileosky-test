@@ -42,14 +42,38 @@ export const filterTokens = (tokens) => {
     return { numbersToken, others };
 }
 
+/**
+ * Получить список разделителей, используемых для разбивки строки на токены.
+ * @returns {string[]} Массив строк-разделителей
+ */
+export const getSplitterList = () => [...splitterList];
 
+/**
+ * Проверяет, является ли переданная строка валидным числом.
+ * @param {string} token - Строка для проверки
+ * @returns {boolean} true, если строка — валидное число, иначе false
+ */
+export const isValidNumberToken = (token) => {
+    const numberToken = Number(token);
+    return !isNaN(numberToken) && isFinite(numberToken);
+};
+
+
+/**
+ * Возращает цвет в градиенте от зеленого через желтый к красному для заданного индекса.
+ * Используется для отображения легенды.
+ *
+ * @param {number} index - Индекс текущего элемента (начиная с 0).
+ * @param {number} total - Общее количество элементов в градиенте.
+ * @returns {string} Цвет в формате 'rgb(r, g, b)'.
+ */
 export const interpolateColor = (index, total) => {
     if (total <= 1) return 'rgb(0, 255, 0)';
     
     const middleIndex = Math.floor(total / 2);
     const ratio = index / (total - 1);
     
-    // red = красный, green = зеленый, blue = синий (всегда 0)
+    // синий всегда 0
     let red = 0, green = 255, blue = 0;
     
     if (index <= middleIndex) {
