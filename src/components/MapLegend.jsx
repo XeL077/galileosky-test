@@ -1,9 +1,14 @@
 import React from 'react';
 
-export default function MapLegend() {
+/**
+ * Преобразование текста в массив
+ * @param textAreaValue - string
+ */
+export default function MapLegend({items}) {
   return (
     <div className="map-legend">
       <strong>Легенда</strong>
+      {items.join(' ')}
     </div>
   );
 }

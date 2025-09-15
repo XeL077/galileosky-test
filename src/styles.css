@@ -16,6 +16,10 @@ body {
   padding: 2rem;
 }
 
+.text-left {
+  text-align: left;
+}
+
 button {
   padding: 0.6rem 1rem;
   border-radius: 0.5rem;
