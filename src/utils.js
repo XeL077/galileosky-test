@@ -58,34 +58,36 @@ export const isValidNumberToken = (token) => {
     return !isNaN(numberToken) && isFinite(numberToken);
 };
 
-
 /**
- * Возращает цвет в градиенте от зеленого через желтый к красному для заданного индекса.
- * Используется для отображения легенды.
+ * Интерполяция значения в цвет
  *
- * @param {number} index - Индекс текущего элемента (начиная с 0).
- * @param {number} total - Общее количество элементов в градиенте.
- * @returns {string} Цвет в формате 'rgb(r, g, b)'.
+ * @param {number} value - значение
+ * @param {number} min   - минимальное значение
+ * @param {number} max   - максимальное значение
+ * @returns {string} цвет 'rgb(r, g, b)'
  */
-export const interpolateColor = (index, total) => {
-    if (total <= 1) return 'rgb(0, 255, 0)';
-    
-    const middleIndex = Math.floor(total / 2);
-    const ratio = index / (total - 1);
-    
-    // синий всегда 0
-    let red = 0, green = 255, blue = 0;
-    
-    if (index <= middleIndex) {
-      // От зеленого к желтому: увеличиваем красный
-      const phaseRatio = index / middleIndex;
-      red = Math.round(255 * phaseRatio);
-    } else {
-      // От желтого к красному: уменьшаем зеленый
-      const phaseRatio = (index - middleIndex) / (total - 1 - middleIndex);
-      red = 255;
-      green = Math.round(255 * (1 - phaseRatio));
+export function interpolateColor(value, min, max) {
+    if (min === max) {
+      return 'rgb(255, 255, 0)'; // все одинаковые → жёлтый
     }
-    
+  
+    const ratio = (value - min) / (max - min); // нормализация в [0..1]
+    const mid = 0.5;
+  
+    let red, green;
+    const blue = 0;
+  
+    if (ratio <= mid) {
+      // от зелёного к жёлтому
+      const phase = ratio / mid;
+      red = Math.round(255 * phase);
+      green = 255;
+    } else {
+      // от жёлтого к красному
+      const phase = (ratio - mid) / (1 - mid);
+      red = 255;
+      green = Math.round(255 * (1 - phase));
+    }
+  
     return `rgb(${red}, ${green}, ${blue})`;
-  };
+}
