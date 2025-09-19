@@ -104,4 +104,19 @@ button:active {
   text-align: left;
 }
 
+.examples-wrapper {
+  margin-top: 1rem;
+}
+
+.examples-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.example-button {
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
+
 

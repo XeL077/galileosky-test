@@ -1,5 +1,5 @@
 import React from 'react';
-import { interpolateColor } from '../utils'
+import { interpolateColor  } from '../utils'
 
 /**
  * Компонент легенды карты с цветовой градацией
@@ -11,15 +11,18 @@ if (!items.length) return;
   // Создаем копию и сортируем, чтобы не мутировать исходный массив
   const sortedItems = [...items].sort((a, b) => a - b);
 
+  const min = sortedItems[0];
+  const max = sortedItems[sortedItems.length -1];
+
   return (
     <div className="map-legend">
       <strong>Легенда:</strong>
       <div className='map-legend-list'>
         {sortedItems.map((item, index) => {
-          const color = interpolateColor(index, sortedItems.length);
+          const color = interpolateColor(item, min, max);
           return (
             <div 
-              key={item} 
+              key={index} 
               className='map-legend-item'
               style={{ backgroundColor: color }}
             >

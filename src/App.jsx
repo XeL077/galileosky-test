@@ -41,16 +41,16 @@ export default function App() {
           Обработать данные
         </button>
         
-        <div style={{ marginTop: '1rem' }}>
+        <div className="examples-wrapper">
           <span>
             Примеры данных:
           </span>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div className="examples-container">
             <button 
               type="button" 
               onClick={handleClickSetPreset} 
               value="3 2, 4, 10 40"
-              style={{ fontSize: '0.75rem', padding: '0.5rem 0.75rem' }}
+              className="example-button"
             >
               3 2, 4, 10 40
             </button>
@@ -58,7 +58,7 @@ export default function App() {
               type="button" 
               onClick={handleClickSetPreset} 
               value="1, 2 d  40d"
-              style={{ fontSize: '0.75rem', padding: '0.5rem 0.75rem' }}
+              className="example-button"
             >
               1, 2 d  40d
             </button>
@@ -66,9 +66,17 @@ export default function App() {
               type="button" 
               onClick={handleClickSetPreset} 
               value={hundredNumbers}
-              style={{ fontSize: '0.75rem', padding: '0.5rem 0.75rem' }}
+              className="example-button"
             >
               0-99
+            </button>
+            <button 
+              type="button" 
+              onClick={handleClickSetPreset} 
+              value={'0 1 1 1 3 0'}
+              className="example-button"
+            >
+              0 1 1 1 3 0 
             </button>
           </div>
         </div>
