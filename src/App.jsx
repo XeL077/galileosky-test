@@ -70,6 +70,14 @@ export default function App() {
             >
               0-99
             </button>
+            <button 
+              type="button" 
+              onClick={handleClickSetPreset} 
+              value={'0 1 1 1 3 0'}
+              style={{ fontSize: '0.75rem', padding: '0.5rem 0.75rem' }}
+            >
+              0 1 1 1 3 0 
+            </button>
           </div>
         </div>
       </div>
